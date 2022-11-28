@@ -1,0 +1,20 @@
+{
+  "name": "assembly-compiling-automater-for-vscode",
+  "displayName": "Assembly-Compiling-Automater-for-Vscode",
+  "version": "1.0.0",
+  "description": "The Assembly-Compiling-Automater-for-Vscode, allows you to compile your assembly program by simply typing CTRL+Shift+B.",
+  "main": "test.asm",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kelvin-labs/assembly-compiling-automater-for-vscode.git"
+  },
+  "author": "kelvin-labs",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kelvin-labs/assembly-compiling-automater-for-vscode/issues"
+  },
+  "homepage": "https://github.com/kelvin-labs/assembly-compiling-automater-for-vscode#readme"
+}

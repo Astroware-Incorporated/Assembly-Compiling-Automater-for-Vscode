@@ -1,0 +1,65 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build-.o-file-from-assembly-in-linux",
+            "command": "nasm",
+            "args": [
+                "-f",
+                "elf",
+                "${fileBasename}"
+            ],
+            "type": "shell"
+        },
+        {
+            "label": "build-.o-file-from-assembly-in-wsl",
+            "command": "wsl",
+            "args": [
+                "nasm",
+                "-f",
+                "elf",
+                "${fileBasename}"
+            ],
+            "type": "shell"
+        },
+        {
+            "label": "build-program-in-linux",
+            "command": "ld",
+            "args": [
+                "-m",
+                "elf_i386",
+                "-o",
+                "${fileBasenameNoExtension}",
+                "${fileBasenameNoExtension}.o"
+            ],
+            "type": "shell",
+            "dependsOn": [
+                "build-.o-file-from-assembly-in-linux"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "build-program-in-wsl",
+            "command": "wsl",
+            "args": [
+                "ld",
+                "-m",
+                "elf_i386",
+                "-o",
+                "${fileBasenameNoExtension}",
+                "${fileBasenameNoExtension}.o"
+            ],
+            "type": "shell",
+            "dependsOn": [
+                "build-.o-file-from-assembly-in-wsl"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

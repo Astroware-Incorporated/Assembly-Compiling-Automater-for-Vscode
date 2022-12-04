@@ -4,10 +4,10 @@
         {
             "type": "gdb",
             "request": "launch",
-            "name": "compile",
+            "name": "build-and-test-binary-file",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
             "stopOnEntry": false,
-            "preLaunchTask": "build-program-in-linux"
+            "preLaunchTask": "build-and-test-binary-file-in-linux"
         }
     ]
 }

@@ -2,39 +2,27 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build-.o-file-from-assembly-in-linux",
+            "label": "build-binary-file-in-linux",
             "command": "nasm",
             "args": [
                 "-f",
-                "elf",
-                "${fileBasename}"
-            ],
-            "type": "shell"
-        },
-        {
-            "label": "build-.o-file-from-assembly-in-wsl",
-            "command": "wsl",
-            "args": [
-                "nasm",
-                "-f",
-                "elf",
-                "${fileBasename}"
-            ],
-            "type": "shell"
-        },
-        {
-            "label": "build-program-in-linux",
-            "command": "ld",
-            "args": [
-                "-m",
-                "elf_i386",
+                "bin",
+                "${fileBasename}",
                 "-o",
-                "${fileBasenameNoExtension}",
-                "${fileBasenameNoExtension}.o"
+                "${fileBasenameNoExtension}.bin",
+            ],
+            "type": "shell"
+        },
+        {
+            "label": "build-and-test-binary-file-in-linux",
+            "command": "qemu-system-i386",
+            "args": [
+                "-hda",
+                "${fileBasenameNoExtension}.bin"
             ],
             "type": "shell",
             "dependsOn": [
-                "build-.o-file-from-assembly-in-linux"
+                "build-binary-file-in-linux"
             ],
             "group": {
                 "kind": "build",
@@ -42,19 +30,29 @@
             }
         },
         {
-            "label": "build-program-in-wsl",
+            "label": "build-binary-file-in-wsl",
             "command": "wsl",
             "args": [
-                "ld",
-                "-m",
-                "elf_i386",
+                "nasm",
+                "-f",
+                "bin",
+                "${fileBasename}",
                 "-o",
-                "${fileBasenameNoExtension}",
-                "${fileBasenameNoExtension}.o"
+                "${fileBasenameNoExtension}.bin",
+            ],
+            "type": "shell"
+        },
+        {
+            "label": "build-and-test-binary-file-in-wsl",
+            "command": "wsl",
+            "args": [
+                "qemu-system-i386",
+                "-hda",
+                "${fileBasenameNoExtension}.bin"
             ],
             "type": "shell",
             "dependsOn": [
-                "build-.o-file-from-assembly-in-wsl"
+                "build-binary-file-in-wsl"
             ],
             "group": {
                 "kind": "build",
